@@ -1,7 +1,6 @@
 version: '2'
 
 services:
-
   elasticsearch:
     build:
       context: elasticsearch/
@@ -9,6 +8,7 @@ services:
         ELK_VERSION: $ELK_VERSION
     volumes:
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      - $ES_DATA_HOST_PATH:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -51,6 +51,5 @@ services:
       - elasticsearch
 
 networks:
-
   elk:
     driver: bridge
